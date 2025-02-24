@@ -1,10 +1,11 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
+import Meta from '@/components/atoms/meta/index';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Search, Calendar, Gauge, MapPin, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
-
+import Footer from '@/components/organism/footer/index';
 // Mock data for cars
 const cars = [
   {
@@ -98,9 +99,10 @@ const cars = [
     image: 'https://img1.icarros.com/dbimg/imgadicionalanuncio/5/356950906_1.webp?auto=format&fit=crop&q=80&w=800'
   },
   ];
-
+import Modal from '@/components/organism/about/index'
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredCars = cars.filter(car => 
     car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -114,6 +116,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      {/* Meta */}
+      <Meta />
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -176,6 +180,10 @@ export default function Home() {
           ))}
         </div>
       </div>
+      {/*Footer*/}
+      < Footer onOpenModal={() => setIsModalOpen(true)} />
+       {/* Modal About */}
+       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 }
