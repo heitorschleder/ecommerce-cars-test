@@ -1,6 +1,10 @@
 import { Card, CardContent } from '@/components/ui/card';
 
-const Footer = ({ onOpenModal }) => {
+interface FooterProps {
+  onOpenModal: () => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onOpenModal }) => {
   return (
     <footer className="bg-white shadow-inner mt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
